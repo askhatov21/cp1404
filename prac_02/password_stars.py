@@ -1,5 +1,5 @@
 MIN_LENGTH = 8
-def main():
+de
 
 
     password = get_password()
