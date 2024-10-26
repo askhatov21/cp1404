@@ -21,7 +21,18 @@ while choice != "Q":
     else:
         print("Invalid menu choice")
 
-
+def load_places(filename="file.csv"):
+    """Load places from a CSV file and returns them as a list"""
+    places = []
+    try:
+        with open(filename, "r") as file:
+            reader = csv.reader(file)
+            for row in reader:
+                places.append(row)
+        print(f'{len(places)} places loaded from {filename}')
+    except FileNotFoundError:
+        print(f'File {filename} not found.')
+    return places
 
 
 main()
