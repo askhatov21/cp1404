@@ -1,7 +1,7 @@
 import csv
 
 def main():
-    MENU = " D - Display all places\nR - Recommended a random place\nA - Add a new place\nM - Mark a place as visited\nQ - quit\n"
+    MENU = "D - Display all places\nR - Recommended a random place\nA - Add a new place\nM - Mark a place as visited\nQ - quit\n"
     print("Travel Tracker 1.0 - by Askhatov Amir")
     places = load_places() # Load location  from csv file
 
@@ -34,7 +34,15 @@ def load_places(filename="file.csv"):
         print(f'File {filename} not found.')
     return places
 
-def recommend_place(places):
+def display_places(places):
+    """Display a formatted list of places."""
+    if places:
+        for i , place in enumerate(places, start=1):
+            print(f"{i}. {places}")
+
+        else:
+            print("No places loaded.")
+def recommend_places(places):
     """Function for recommends for random places."""
     #Logic for recommend place
     print("Recommendation logic not implemented yet.")
