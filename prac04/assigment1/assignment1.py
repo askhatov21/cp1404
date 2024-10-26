@@ -1,14 +1,14 @@
 import csv
 
 def main():
-MENU = " D - Display all places\nR - Recommended a random place\nA - Add a new place\nM - Mark a place as visited\nQ - quit\n"
-print("Travel Tracker 1.0 - by Askhatov Amir")
-places = load_places() # Load location  from csv file
+    MENU = " D - Display all places\nR - Recommended a random place\nA - Add a new place\nM - Mark a place as visited\nQ - quit\n"
+    print("Travel Tracker 1.0 - by Askhatov Amir")
+    places = load_places() # Load location  from csv file
 
-choice = ""
-while choice != "Q":
-    print(MENU)
-    choice = input(">>>").upper()
+    choice = ""
+    while choice != "Q":
+        print(MENU)
+        choice = input(">>>").upper()
     if choice == "D":
         display_places(places)
     elif choice == "R":
@@ -43,8 +43,10 @@ def mark_visited(places):
     """Function to mark a place as visited."""
     #Logic to mark a place as visited.
     print("Mark visited logic not implemented yet.")
-def save_places(places):
-    """Function about save places"""
-    #
-    prin
+def save_places(places, filename='file.csv'):
+    """Function for saving places to a CSV file."""
+    with open(filename, "w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerows(places)
+    print(f'{len(places)} places saved to {filename}')
 main()
