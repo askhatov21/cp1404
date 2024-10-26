@@ -39,5 +39,12 @@ def recommend_place(places):
     #Logic for recommend place
     print("Recommendation logic not implemented yet.")
 
-
+def mark_visited(places):
+    """Function to mark a place as visited."""
+    #Logic to mark a place as visited.
+    print("Mark visited logic not implemented yet.")
+def save_places(places):
+    """Function about save places"""
+    #
+    prin
 main()
