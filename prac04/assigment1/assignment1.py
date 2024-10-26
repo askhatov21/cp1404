@@ -9,17 +9,17 @@ def main():
     while choice != "Q":
         print(MENU)
         choice = input(">>>").upper()
-    if choice == "D":
-        display_places(places)
-    elif choice == "R":
-        recommend_places(places)
-    elif choice == "M":
-        mark_visited(places)
-    elif choice == "Q":
-        save_places(places)
-        print("Goodbye!")
-    else:
-        print("Invalid menu choice")
+        if choice == "D":
+            display_places(places)
+        elif choice == "R":
+            recommend_places(places)
+        elif choice == "M":
+            mark_visited(places)
+        elif choice == "Q":
+            save_places(places)
+            print("Goodbye!")
+        else:
+            print("Invalid menu choice")
 
 def load_places(filename="file.csv"):
     """Load places from a CSV file and returns them as a list"""
@@ -38,7 +38,7 @@ def display_places(places):
     """Display a formatted list of places."""
     if places:
         for i , place in enumerate(places, start=1):
-            print(f"{i}. {places}")
+            print(f"{i}. {place}")
 
         else:
             print("No places loaded.")
