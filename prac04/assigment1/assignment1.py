@@ -40,18 +40,23 @@ def sort_key(place):
     """Return the key for sorting places by visited status and priority."""
     return (place[3], place[2]) # Sort by visited status ('v' or 'n') and priority (integer)
 def display_places(places):
-    """Display a formatted list of places."""
-    if places:
-        places.sort(key=sort_key) # Use the separate sort_key function
-        for i , place in enumerate(places, start=1):
-            print(f"{i}. {place}")
+    """Display a formatted list of all places, sorted by visited status and priority"""
+    places.sort(key=sort_key)
+    status_marks = {"n", "*", "v": ""}
+    for i, place in enumerate(places, start=1):
+        visited_mark = status_marks.get(place[3])
+        print(f'{visited_mark}{i}. {place[0]} in {place[1]} (priority {place[2]}')
 
-        else:
-            print("No places loaded.")
+    unvisited_count = sum(1 for place in places if place[3] == "n")
+    print(f'\n{len(places)} places tracked. You still want to visit {unvisited_count} places' if places else "No places loaded.")
 def recommend_places(places):
     """Function for recommends for random places."""
-
-    print("Recommendation logic not implemented yet.")
+    unvisited_place = [place for place in places if place [3] == "n"]
+    if unvisited_place:
+        place = random.choice(unvisited_place)
+        print(f"Not sure where to visit next?\nHow about... {place[0]} in {place[1]}")
+    else:
+        print("No place left to visit!")
 
 def get_positive_int(prompt):
     """Prompt the user for a positive integer, with validation."""
