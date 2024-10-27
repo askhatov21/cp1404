@@ -1,5 +1,7 @@
 import csv
+import random
 
+ FILENAME = "file.csv"
 def main():
     MENU = "D - Display all places\nR - Recommended a random place\nA - Add a new place\nM - Mark a place as visited\nQ - quit\n"
     print("Travel Tracker 1.0 - by Askhatov Amir")
@@ -34,6 +36,9 @@ def load_places(filename="file.csv"):
         print(f'File {filename} not found.')
     return places
 
+def sort_key(place):
+    """Return the key for sorting places by visited status and priority."""
+    return (place[3], place[2]) # Sort by visited status ('v' or 'n') and priority (integer)
 def display_places(places):
     """Display a formatted list of places."""
     if places:
@@ -44,13 +49,25 @@ def display_places(places):
             print("No places loaded.")
 def recommend_places(places):
     """Function for recommends for random places."""
-    #Logic for recommend place
+
     print("Recommendation logic not implemented yet.")
 
 def mark_visited(places):
-    """Function to mark a place as visited."""
-    #Logic to mark a place as visited.
-    print("Mark visited logic not implemented yet.")
+    """Mark a place as visited."""
+    unvisited_place = [place for place in places if place[3] == "n"]
+    if not unvisited_place:
+        print("No unvisited places")
+        return
+    display_places(places)
+    place_num = get_positive_int("Enter the number of a place to mark as visited: ")
+
+    if 0 < place_num <= len(places) and places[place_num - 1][3] == "n":
+        places[place_num - 1][3] = 'v'
+        print(f'{places[place_num - 1][0]}in {places[place_num - 1][1]} visited!')
+    else:
+        print("Invalid place number")
+
+
 def save_places(places, filename='file.csv'):
     """Function for saving places to a CSV file."""
     with open(filename, "w", newline="") as file:
