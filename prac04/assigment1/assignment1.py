@@ -1,7 +1,7 @@
 import csv
 import random
 
- FILENAME = "file.csv"
+FILENAME = "file.csv"
 def main():
     MENU = "D - Display all places\nR - Recommended a random place\nA - Add a new place\nM - Mark a place as visited\nQ - quit\n"
     print("Travel Tracker 1.0 - by Askhatov Amir")
@@ -42,6 +42,7 @@ def sort_key(place):
 def display_places(places):
     """Display a formatted list of places."""
     if places:
+        places.sort(key=sort_key) # Use the separate sort_key function
         for i , place in enumerate(places, start=1):
             print(f"{i}. {place}")
 
@@ -52,6 +53,16 @@ def recommend_places(places):
 
     print("Recommendation logic not implemented yet.")
 
+def get_positive_int(prompt):
+    """Prompt the user for a positive integer, with validation."""
+    while True:
+        try:
+            value = int(input(prompt))
+            if value > 0:
+                return value
+            print("Number must be > 0")
+        except ValueError:
+            print("Invalid input; enter a valid number")
 def mark_visited(places):
     """Mark a place as visited."""
     unvisited_place = [place for place in places if place[3] == "n"]
