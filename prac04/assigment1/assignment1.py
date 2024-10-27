@@ -42,7 +42,7 @@ def sort_key(place):
 def display_places(places):
     """Display a formatted list of all places, sorted by visited status and priority"""
     places.sort(key=sort_key)
-    status_marks = {"n", "*", "v": ""}
+    status_marks = {"n": "*", "v": ""}
     for i, place in enumerate(places, start=1):
         visited_mark = status_marks.get(place[3])
         print(f'{visited_mark}{i}. {place[0]} in {place[1]} (priority {place[2]}')
